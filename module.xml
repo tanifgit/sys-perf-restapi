@@ -12,7 +12,6 @@
        <CSPApplication 
         Url="/pbuttons"
         DispatchClass="zpButtons.API.RESTAPI"
-        MatchRoles=":{$dbrole}"
         PasswordAuthEnabled="1"
         UnauthenticatedEnabled="0"
         Recurse="1"
