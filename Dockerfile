@@ -27,7 +27,7 @@ RUN \
   write "Create web application ..." \
   set webName = "/pbuttons" \
   set webProperties("DispatchClass") = "zpButtons.API.RESTAPI" \
-  set webProperties("NameSpace") = "IRISAPP" \
+  set webProperties("NameSpace") = "%SYS" \
   set webProperties("Enabled") = 1 \
   set webProperties("AutheEnabled") = 32 \
   set sc = ##class(Security.Applications).Create(webName, .webProperties) \

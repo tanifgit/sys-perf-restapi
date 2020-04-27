@@ -1,5 +1,5 @@
-## intersystems-iris-docker-rest-template
-This is a template of a REST API application built with ObjectScript in InterSystems IRIS.
+## sys-perf-restapi
+This is a REST API application for wrapping the SystemPerformance (pka pButtons) utility, built with ObjectScript in InterSystems IRIS.
 It also has OPEN API spec, 
 can be developed with Docker and VSCode,
 can ve deployed as ZPM module.
@@ -9,7 +9,7 @@ Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installi
 
 ## Installation with ZPM
 
-zpm:USER>install rest-template
+zpm:USER>install sys-perf-restapi
 
 ## Installation for development
 
