@@ -179,8 +179,8 @@ XData OpenAPI [ MimeType = application/json ]
             "type":"string"
           }
         ],
-        "operationId":"GetProfiles",
-        "x-ISC_ServiceMethod":"GetProfiles",
+        "operationId":"GetProfile",
+        "x-ISC_ServiceMethod":"GetProfile",
         "x-ISC_CORS":true,
         "responses":{
           "default":{
@@ -194,7 +194,7 @@ XData OpenAPI [ MimeType = application/json ]
     },
     "/profileMgmt":{
       "get":{
-        "operationId":"GetProfiles01",
+        "operationId":"GetProfiles",
         "x-ISC_ServiceMethod":"GetProfiles",
         "x-ISC_CORS":true,
         "responses":{

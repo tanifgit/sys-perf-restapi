@@ -1,5 +1,5 @@
 /// Business logic class defined by OpenAPI in zpButtons.API.REST.spec<br/>
-/// Created Apr 30, 2020 04:39:57
+/// Updated Apr 30, 2020 13:48:27
 Class zpButtons.API.REST.impl Extends %REST.Impl [ ProcedureBlock ]
 {
 
@@ -117,16 +117,14 @@ ClassMethod DeleteProfile(name As %String) As %Stream.Object
 }
 
 /// gets a list of all the currently defined profiles
-ClassMethod GetProfiles(name As %String = "") As %Stream.Object
+ClassMethod GetProfiles() As %Stream.Object
 {
     #dim status As %Status = $$$OK
     #dim ex As %Exception.SystemException
 
 	Try {
         Do ..%SetContentType(##class(%CSP.REST).#CONTENTTYPEJSON)
-        If (name="") {
-			Set name = %request.Get("Name")
-		}
+        set name = ""
 		Set status = ##class(zpButtons.API.Basic.api).GetProfiles(name,.profiles)
 				
 		If $$$ISOK(status) {
@@ -173,6 +171,7 @@ ClassMethod CopyProfile(name As %String, newName As %String, payloadBody As %Str
 ///     profile<br/>
 ///     liteRun<br/>
 ///     payloadBody, Request body contents<br/>
+/// WARNING: This method's signature has changed.
 ClassMethod RunProfile(profile As %String, liteRun As %String, payloadBody As %Stream.Object) As %Stream.Object
 {
     #dim status As %Status = $$$OK
@@ -273,7 +272,8 @@ ClassMethod CreatePreviewReport(runId As %String, payloadBody As %Stream.Object)
 /// The method arguments hold values for:<br/>
 ///     runId<br/>
 ///     delete<br/>
-ClassMethod StopRun(runId As %String, delete As %String = 1) As %Stream.Object
+/// WARNING: This method's signature has changed.
+ClassMethod StopRun(runId As %String, delete As %String) As %Stream.Object
 {
     #dim status As %Status = $$$OK
     #dim ex As %Exception.SystemException
@@ -413,6 +413,33 @@ ClassMethod GetVersion() As %Stream.Object
 	}
 	
 	Quit result
+}
+
+/// (provide functional description here)<br/>
+/// The method arguments hold values for:<br/>
+///     name<br/>
+ClassMethod GetProfile(name As %String) As %Stream.Object
+{
+        #dim status As %Status = $$$OK
+    #dim ex As %Exception.SystemException
+
+	Try {
+        Do ..%SetContentType(##class(%CSP.REST).#CONTENTTYPEJSON)
+        If (name="") {
+			Set name = %request.Get("Name")
+		}
+		Set status = ##class(zpButtons.API.Basic.api).GetProfiles(name,.profiles)
+				
+		If $$$ISOK(status) {
+			Do ..%SetStatusCode(##class(%CSP.REST).#HTTP200OK)	
+		} else {
+            throw ##class(%Exception.StatusException).CreateFromStatus(status)
+        }
+	} Catch ex {
+		throw ex	
+	}
+	
+	Quit profiles
 }
 
 }
