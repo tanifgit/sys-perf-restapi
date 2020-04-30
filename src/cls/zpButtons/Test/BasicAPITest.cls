@@ -12,11 +12,11 @@ Method MakeCall(methodName As %String, hasOutputArg As %Boolean = 1, Output json
 	Set status = $$$OK
 	If ..#APITYPE="Basic" {
 		If $Data(args) {
-			Set status = $ClassMethod("zpButtons.API.BasicAPI",methodName,args...) 
+			Set status = $ClassMethod("zpButtons.API.Basic.api",methodName,args...) 
 		} ElseIf hasOutputArg {
-			Set status = $ClassMethod("zpButtons.API.BasicAPI",methodName,.jsonResultArg) 
+			Set status = $ClassMethod("zpButtons.API.Basic.api",methodName,.jsonResultArg) 
 		} Else {
-			Set status = $ClassMethod("zpButtons.API.BasicAPI",methodName) 
+			Set status = $ClassMethod("zpButtons.API.Basic.api",methodName) 
 		}
 		
 		Do $$$AssertStatusOK(status,methodName_" returned an OK status: "_status)
@@ -60,7 +60,7 @@ Method MakeCall(methodName As %String, hasOutputArg As %Boolean = 1, Output json
 		Set ..HttpRequest.Timeout = 120
 		
 		Do ..HttpRequest.SetParam($$$usernamePar,"SuperUser")
-		Do ..HttpRequest.SetParam($$$passwordPar,"sys")
+		Do ..HttpRequest.SetParam($$$passwordPar,"SYS")
 		
 		Set status = ..HttpRequest.Send(httpMethodType,url)	
 		
@@ -69,7 +69,8 @@ Method MakeCall(methodName As %String, hasOutputArg As %Boolean = 1, Output json
 		If $$$ISOK(status) {
 			Set statusCode = ..HttpRequest.HttpResponse.StatusCode
 			
-			Do $$$AssertEquals(statusCode,200,methodName_" REST call returned success Status code: "_statusCode)				
+			set statusCodePrefix = $Extract(statusCode,1,2)
+			Do $$$AssertEquals(statusCodePrefix,"20",methodName_" REST call returned success Status code: "_statusCode)				
 			
 			Set returnData = ..HttpRequest.HttpResponse.Data
 			
@@ -77,7 +78,7 @@ Method MakeCall(methodName As %String, hasOutputArg As %Boolean = 1, Output json
 				Set returnData = returnData.Read()	
 			}
 			
-			If statusCode'=200 {
+			If statusCodePrefix'="20" {
 				Quit $$$ERROR(statusCode_" : "_returnData)
 			}
 				
@@ -632,7 +633,7 @@ Method OnBeforeOneTest(testname As %String) As %Status
 
 Method GetURLAndHttpType(methodName As %String, Output URL As %String, Output HttpType As %String) As %Status
 {
-	set xdata = ##class(%Dictionary.XDataDefinition).%OpenId("zpButtons.API.RESTAPI||UrlMap")	
+	set xdata = ##class(%Dictionary.XDataDefinition).%OpenId("zpButtons.API.REST.disp||UrlMap")	
 	
 	Set status=##class(%XML.XPATH.Document).CreateFromStream(xdata.Data,.document)
 	$$$QuitOnError(status)
@@ -658,6 +659,16 @@ Method GetURLAndHttpType(methodName As %String, Output URL As %String, Output Ht
 	Set HttpType = result.Value
 	
 	Quit status
+}
+
+ClassMethod RunBasicTests() As %Status
+{
+	do ##class(%UnitTest.Manager).DebugRunTestCase("tests","zpButtons.Test.BasicAPITest")
+}
+
+ClassMethod RunRESTTests() As %Status
+{
+	do ##class(%UnitTest.Manager).DebugRunTestCase("tests","zpButtons.Test.RestAPITest")
 }
 
 }
