@@ -3,7 +3,7 @@
   <Document name="sys-perf-restapi.ZPM">
     <Module>
       <Name>sys-perf-restapi</Name>
-      <Version>1.0.1</Version>
+      <Version>1.0.2</Version>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="zpButtons.PKG"/>
@@ -11,7 +11,7 @@
      
        <CSPApplication 
         Url="/pbuttons"
-        DispatchClass="zpButtons.API.RESTAPI"
+        DispatchClass="zpButtons.API.REST.disp"
         PasswordAuthEnabled="1"
         UnauthenticatedEnabled="0"
         Recurse="1"

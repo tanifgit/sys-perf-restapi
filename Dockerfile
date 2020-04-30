@@ -26,7 +26,7 @@ RUN \
   zn "%SYS" \
   write "Create web application ..." \
   set webName = "/pbuttons" \
-  set webProperties("DispatchClass") = "zpButtons.API.RESTAPI" \
+  set webProperties("DispatchClass") = "zpButtons.API.REST.disp" \
   set webProperties("NameSpace") = "%SYS" \
   set webProperties("Enabled") = 1 \
   set webProperties("AutheEnabled") = 32 \
