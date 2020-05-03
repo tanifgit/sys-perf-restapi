@@ -1,8 +1,8 @@
 {
     "info": {
-        "title": "",
-        "description": "",
-        "version": "",
+        "title": "SystemPerformance Utility API",
+        "description": "An API for interacting with the SystemPerformance Utility",
+        "version": "1.0.1",
         "x-ISC_Namespace": "%SYS"
     },
     "basePath": "/pButtons",
@@ -45,14 +45,15 @@
                     }
                 ],
                 "operationId": "CreateProfilePerCount",
+                "description": "Create a profile giving an interval and count",
                 "x-ISC_ServiceMethod": "CreateProfilePerCount",
                 "x-ISC_CORS": true,
                 "responses": {
                     "default": {
                         "description": "(Unexpected Error)"
                     },
-                    "200": {
-                        "description": "(Expected Result)"
+                    "201": {
+                        "description": "Profile Created"
                     }
                 }
             },
@@ -93,6 +94,7 @@
                     }
                 ],
                 "operationId": "EditProfile",
+                "description": "Edit a profile, providing new interval and count",
                 "x-ISC_ServiceMethod": "EditProfile",
                 "x-ISC_CORS": true,
                 "responses": {
@@ -100,7 +102,7 @@
                         "description": "(Unexpected Error)"
                     },
                     "200": {
-                        "description": "(Expected Result)"
+                        "description": "Profile Edited Successfully"
                     }
                 }
             }
@@ -131,14 +133,15 @@
                     }
                 ],
                 "operationId": "CreateProfilePerDuration",
+                "description": "Create a profile giving a duration and interval",
                 "x-ISC_ServiceMethod": "CreateProfilePerDuration",
                 "x-ISC_CORS": true,
                 "responses": {
                     "default": {
                         "description": "(Unexpected Error)"
                     },
-                    "200": {
-                        "description": "(Expected Result)"
+                    "201": {
+                        "description": "Profile Created"
                     }
                 }
             }
@@ -156,12 +159,13 @@
                 "operationId": "DeleteProfile",
                 "x-ISC_ServiceMethod": "DeleteProfile",
                 "x-ISC_CORS": true,
+                "description": "Delete a profile per name",
                 "responses": {
                     "default": {
                         "description": "(Unexpected Error)"
                     },
                     "200": {
-                        "description": "(Expected Result)"
+                        "description": "Profile Deleted Successfully"
                     }
                 }
             },
@@ -182,7 +186,7 @@
                         "description": "(Unexpected Error)"
                     },
                     "200": {
-                        "description": "(Expected Result)"
+                        "description": "Info about a Profile"
                     }
                 }
             }
@@ -229,84 +233,15 @@
                     }
                 ],
                 "operationId": "CopyProfile",
+                "description": "Copy a Profile giving a new name",
                 "x-ISC_ServiceMethod": "CopyProfile",
                 "x-ISC_CORS": true,
                 "responses": {
                     "default": {
                         "description": "(Unexpected Error)"
                     },
-                    "200": {
-                        "description": "(Expected Result)"
-                    }
-                }
-            }
-        },
-        "/runMgmt/{profile}": {
-            "post": {
-                "parameters": [
-                    {
-                        "name": "profile",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "payloadBody",
-                        "in": "body",
-                        "description": "Request body contents",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "operationId": "RunProfile",
-                "x-ISC_ServiceMethod": "RunProfile",
-                "x-ISC_CORS": true,
-                "responses": {
-                    "default": {
-                        "description": "(Unexpected Error)"
-                    },
-                    "200": {
-                        "description": "(Expected Result)"
-                    }
-                }
-            }
-        },
-        "/runMgmt/{profile}/{liteRun}": {
-            "post": {
-                "parameters": [
-                    {
-                        "name": "profile",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "liteRun",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "name": "payloadBody",
-                        "in": "body",
-                        "description": "Request body contents",
-                        "required": false,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "operationId": "RunProfile01",
-                "x-ISC_ServiceMethod": "RunProfile",
-                "x-ISC_CORS": true,
-                "responses": {
-                    "default": {
-                        "description": "(Unexpected Error)"
-                    },
-                    "200": {
-                        "description": "(Expected Result)"
+                    "201": {
+                        "description": "New Profile Copy Created"
                     }
                 }
             }
@@ -314,6 +249,7 @@
         "/runMgmt": {
             "get": {
                 "operationId": "GetWaitTimeForCurrentRuns",
+                "description": "Return the time remaining to wait for current Runs",
                 "x-ISC_ServiceMethod": "GetWaitTimeForCurrentRuns",
                 "x-ISC_CORS": true,
                 "responses": {
@@ -321,7 +257,7 @@
                         "description": "(Unexpected Error)"
                     },
                     "200": {
-                        "description": "(Expected Result)"
+                        "description": "Returned OK"
                     }
                 }
             }
@@ -337,6 +273,7 @@
                     }
                 ],
                 "operationId": "GetWaitTimeForRunId",
+                "description": "Return the time remaining to wait for a given Run ID",
                 "x-ISC_ServiceMethod": "GetWaitTimeForRunId",
                 "x-ISC_CORS": true,
                 "responses": {
@@ -344,28 +281,7 @@
                         "description": "(Unexpected Error)"
                     },
                     "200": {
-                        "description": "(Expected Result)"
-                    }
-                }
-            },
-            "delete": {
-                "parameters": [
-                    {
-                        "name": "runId",
-                        "in": "path",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "operationId": "StopRun",
-                "x-ISC_ServiceMethod": "StopRun",
-                "x-ISC_CORS": true,
-                "responses": {
-                    "default": {
-                        "description": "(Unexpected Error)"
-                    },
-                    "200": {
-                        "description": "(Expected Result)"
+                        "description": "Returned OK"
                     }
                 }
             },
@@ -388,14 +304,15 @@
                     }
                 ],
                 "operationId": "CreatePreviewReport",
+                "description": "Creat a Preview Report for a Run",
                 "x-ISC_ServiceMethod": "CreatePreviewReport",
                 "x-ISC_CORS": true,
                 "responses": {
                     "default": {
                         "description": "(Unexpected Error)"
                     },
-                    "200": {
-                        "description": "(Expected Result)"
+                    "202": {
+                        "description": "Preview Report Request Accepted"
                     }
                 }
             }
@@ -416,22 +333,24 @@
                         "type": "string"
                     }
                 ],
-                "operationId": "StopRun01",
+                "operationId": "StopRun",
                 "x-ISC_ServiceMethod": "StopRun",
                 "x-ISC_CORS": true,
                 "responses": {
                     "default": {
                         "description": "(Unexpected Error)"
                     },
-                    "200": {
-                        "description": "(Expected Result)"
+                    "202": {
+                        "description": ""
                     }
                 }
             }
         },
         "/runMgmtPrevious": {
             "get": {
+
                 "operationId": "GetPreviousRuns",
+                "description": "Return a list of previous runs",
                 "x-ISC_ServiceMethod": "GetPreviousRuns",
                 "x-ISC_CORS": true,
                 "responses": {
@@ -439,13 +358,14 @@
                         "description": "(Unexpected Error)"
                     },
                     "200": {
-                        "description": "(Expected Result)"
+                        "description": "Returned OK"
                     }
                 }
             }
         },
         "/generalMgmt/logFolder": {
             "get": {
+
                 "operationId": "GetLogFolder",
                 "x-ISC_ServiceMethod": "GetLogFolder",
                 "x-ISC_CORS": true,
@@ -454,7 +374,7 @@
                         "description": "(Unexpected Error)"
                     },
                     "200": {
-                        "description": "(Expected Result)"
+                        "description": "Returned OK"
                     }
                 },
                 "description": "returns the current folder location for the output log files"
@@ -478,8 +398,8 @@
                     "default": {
                         "description": "(Unexpected Error)"
                     },
-                    "200": {
-                        "description": "(Expected Result)"
+                    "204": {
+                        "description": "Set Value OK"
                     }
                 },
                 "description": "changes the output log files folder location to a new value"
@@ -503,8 +423,8 @@
                     "default": {
                         "description": "(Unexpected Error)"
                     },
-                    "200": {
-                        "description": "(Expected Result)"
+                    "204": {
+                        "description": "Reset Value OK"
                     }
                 },
                 "description": "resets the folder location to the default value"
@@ -513,6 +433,7 @@
         "/generalMgmt/version": {
             "get": {
                 "operationId": "GetVersion",
+                "description": "Return version of the Utility",
                 "x-ISC_ServiceMethod": "GetVersion",
                 "x-ISC_CORS": true,
                 "responses": {
@@ -520,7 +441,7 @@
                         "description": "(Unexpected Error)"
                     },
                     "200": {
-                        "description": "(Expected Result)"
+                        "description": "Returned OK"
                     }
                 }
             }
