@@ -57,15 +57,15 @@ Settings file to let you immedietly code in VSCode with [VSCode ObjectScript plu
 Config file if you want to debug with VSCode ObjectScript
 
 # src/ code files
-..* ##### /cls/zpButtons/Basic/api.cls
+##### /cls/zpButtons/Basic/api.cls
     The basic API wrapping the ^SystemPerformance routine
-..* ##### /cls/zpButtons/REST/spec.cls
+##### /cls/zpButtons/REST/spec.cls
     A json Swagger spec of the REST API
-..* ##### /cls/zpButtons/REST/impl.cls
+##### /cls/zpButtons/REST/impl.cls
     The implementation calling into the Basic.api methods
-..* ##### /cls/zpButtons/Test
+##### /cls/zpButtons/Test
     BasicAPITest and RestAPITest - UnitTest classes for testing various scenarios (creating profiles, running, etc.)
-..* ##### /inc/zpButtonsInc.inc 
+##### /inc/zpButtonsInc.inc 
     An include macro definition to support differences between CACHE/Ensemble and InterSystems IRIS.
-..* ##### /swagger
+##### /swagger
     The swagger json file (for editing with relevant plug-in, found easier than the spec class directly)
