@@ -5,9 +5,9 @@ XData OpenAPI [ MimeType = application/json ]
 {
 {
   "info":{
-    "title":"",
-    "description":"",
-    "version":"",
+    "title":"SystemPerformance Utility API",
+    "description":"An API for interacting with the SystemPerformance Utility",
+    "version":"1.0.1",
     "x-ISC_Namespace":"%SYS"
   },
   "basePath":"/pButtons",
@@ -50,14 +50,15 @@ XData OpenAPI [ MimeType = application/json ]
           }
         ],
         "operationId":"CreateProfilePerCount",
+        "description":"Create a profile giving an interval and count",
         "x-ISC_ServiceMethod":"CreateProfilePerCount",
         "x-ISC_CORS":true,
         "responses":{
           "default":{
             "description":"(Unexpected Error)"
           },
-          "200":{
-            "description":"(Expected Result)"
+          "201":{
+            "description":"Profile Created"
           }
         }
       },
@@ -98,6 +99,7 @@ XData OpenAPI [ MimeType = application/json ]
           }
         ],
         "operationId":"EditProfile",
+        "description":"Edit a profile, providing new interval and count",
         "x-ISC_ServiceMethod":"EditProfile",
         "x-ISC_CORS":true,
         "responses":{
@@ -105,7 +107,7 @@ XData OpenAPI [ MimeType = application/json ]
             "description":"(Unexpected Error)"
           },
           "200":{
-            "description":"(Expected Result)"
+            "description":"Profile Edited Successfully"
           }
         }
       }
@@ -136,14 +138,15 @@ XData OpenAPI [ MimeType = application/json ]
           }
         ],
         "operationId":"CreateProfilePerDuration",
+        "description":"Create a profile giving a duration and interval",
         "x-ISC_ServiceMethod":"CreateProfilePerDuration",
         "x-ISC_CORS":true,
         "responses":{
           "default":{
             "description":"(Unexpected Error)"
           },
-          "200":{
-            "description":"(Expected Result)"
+          "201":{
+            "description":"Profile Created"
           }
         }
       }
@@ -161,12 +164,13 @@ XData OpenAPI [ MimeType = application/json ]
         "operationId":"DeleteProfile",
         "x-ISC_ServiceMethod":"DeleteProfile",
         "x-ISC_CORS":true,
+        "description":"Delete a profile per name",
         "responses":{
           "default":{
             "description":"(Unexpected Error)"
           },
           "200":{
-            "description":"(Expected Result)"
+            "description":"Profile Deleted Successfully"
           }
         }
       },
@@ -187,7 +191,7 @@ XData OpenAPI [ MimeType = application/json ]
             "description":"(Unexpected Error)"
           },
           "200":{
-            "description":"(Expected Result)"
+            "description":"Info about a Profile"
           }
         }
       }
@@ -234,84 +238,15 @@ XData OpenAPI [ MimeType = application/json ]
           }
         ],
         "operationId":"CopyProfile",
+        "description":"Copy a Profile giving a new name",
         "x-ISC_ServiceMethod":"CopyProfile",
         "x-ISC_CORS":true,
         "responses":{
           "default":{
             "description":"(Unexpected Error)"
           },
-          "200":{
-            "description":"(Expected Result)"
-          }
-        }
-      }
-    },
-    "/runMgmt/{profile}":{
-      "post":{
-        "parameters":[
-          {
-            "name":"profile",
-            "in":"path",
-            "required":true,
-            "type":"string"
-          },
-          {
-            "name":"payloadBody",
-            "in":"body",
-            "description":"Request body contents",
-            "required":false,
-            "schema":{
-              "type":"string"
-            }
-          }
-        ],
-        "operationId":"RunProfile",
-        "x-ISC_ServiceMethod":"RunProfile",
-        "x-ISC_CORS":true,
-        "responses":{
-          "default":{
-            "description":"(Unexpected Error)"
-          },
-          "200":{
-            "description":"(Expected Result)"
-          }
-        }
-      }
-    },
-    "/runMgmt/{profile}/{liteRun}":{
-      "post":{
-        "parameters":[
-          {
-            "name":"profile",
-            "in":"path",
-            "required":true,
-            "type":"string"
-          },
-          {
-            "name":"liteRun",
-            "in":"path",
-            "required":true,
-            "type":"string"
-          },
-          {
-            "name":"payloadBody",
-            "in":"body",
-            "description":"Request body contents",
-            "required":false,
-            "schema":{
-              "type":"string"
-            }
-          }
-        ],
-        "operationId":"RunProfile01",
-        "x-ISC_ServiceMethod":"RunProfile",
-        "x-ISC_CORS":true,
-        "responses":{
-          "default":{
-            "description":"(Unexpected Error)"
-          },
-          "200":{
-            "description":"(Expected Result)"
+          "201":{
+            "description":"New Profile Copy Created"
           }
         }
       }
@@ -319,6 +254,7 @@ XData OpenAPI [ MimeType = application/json ]
     "/runMgmt":{
       "get":{
         "operationId":"GetWaitTimeForCurrentRuns",
+        "description":"Return the time remaining to wait for current Runs",
         "x-ISC_ServiceMethod":"GetWaitTimeForCurrentRuns",
         "x-ISC_CORS":true,
         "responses":{
@@ -326,7 +262,7 @@ XData OpenAPI [ MimeType = application/json ]
             "description":"(Unexpected Error)"
           },
           "200":{
-            "description":"(Expected Result)"
+            "description":"Returned OK"
           }
         }
       }
@@ -342,6 +278,7 @@ XData OpenAPI [ MimeType = application/json ]
           }
         ],
         "operationId":"GetWaitTimeForRunId",
+        "description":"Return the time remaining to wait for a given Run ID",
         "x-ISC_ServiceMethod":"GetWaitTimeForRunId",
         "x-ISC_CORS":true,
         "responses":{
@@ -349,28 +286,7 @@ XData OpenAPI [ MimeType = application/json ]
             "description":"(Unexpected Error)"
           },
           "200":{
-            "description":"(Expected Result)"
-          }
-        }
-      },
-      "delete":{
-        "parameters":[
-          {
-            "name":"runId",
-            "in":"path",
-            "required":true,
-            "type":"string"
-          }
-        ],
-        "operationId":"StopRun",
-        "x-ISC_ServiceMethod":"StopRun",
-        "x-ISC_CORS":true,
-        "responses":{
-          "default":{
-            "description":"(Unexpected Error)"
-          },
-          "200":{
-            "description":"(Expected Result)"
+            "description":"Returned OK"
           }
         }
       },
@@ -393,14 +309,15 @@ XData OpenAPI [ MimeType = application/json ]
           }
         ],
         "operationId":"CreatePreviewReport",
+        "description":"Creat a Preview Report for a Run",
         "x-ISC_ServiceMethod":"CreatePreviewReport",
         "x-ISC_CORS":true,
         "responses":{
           "default":{
             "description":"(Unexpected Error)"
           },
-          "200":{
-            "description":"(Expected Result)"
+          "202":{
+            "description":"Preview Report Request Accepted"
           }
         }
       }
@@ -421,22 +338,61 @@ XData OpenAPI [ MimeType = application/json ]
             "type":"string"
           }
         ],
-        "operationId":"StopRun01",
+        "operationId":"StopRun",
         "x-ISC_ServiceMethod":"StopRun",
         "x-ISC_CORS":true,
         "responses":{
           "default":{
             "description":"(Unexpected Error)"
           },
-          "200":{
-            "description":"(Expected Result)"
+          "202":{
+            "description":""
           }
         }
       }
     },
+    "/runMgmt/{profile}/{liteRun}":{
+            "post":{
+              "parameters":[
+                {
+                  "name":"profile",
+                  "in":"path",
+                  "required":true,
+                  "type":"string"
+                },
+                {
+                  "name":"liteRun",
+                  "in":"path",
+                  "required":true,
+                  "type":"string"
+                },
+                {
+                  "name":"payloadBody",
+                  "in":"body",
+                  "description":"Request body contents",
+                  "required":false,
+                  "schema":{
+                    "type":"string"
+                  }
+                }
+              ],
+              "operationId":"RunProfile",
+              "x-ISC_ServiceMethod":"RunProfile",
+              "x-ISC_CORS":true,
+              "responses":{
+                "default":{
+                  "description":"(Unexpected Error)"
+                },
+                "202":{
+                  "description":"Run Profile Initiated"
+                }
+              }
+            }
+          },
     "/runMgmtPrevious":{
       "get":{
         "operationId":"GetPreviousRuns",
+        "description":"Return a list of previous runs",
         "x-ISC_ServiceMethod":"GetPreviousRuns",
         "x-ISC_CORS":true,
         "responses":{
@@ -444,7 +400,7 @@ XData OpenAPI [ MimeType = application/json ]
             "description":"(Unexpected Error)"
           },
           "200":{
-            "description":"(Expected Result)"
+            "description":"Returned OK"
           }
         }
       }
@@ -459,7 +415,7 @@ XData OpenAPI [ MimeType = application/json ]
             "description":"(Unexpected Error)"
           },
           "200":{
-            "description":"(Expected Result)"
+            "description":"Returned OK"
           }
         },
         "description":"returns the current folder location for the output log files"
@@ -483,8 +439,8 @@ XData OpenAPI [ MimeType = application/json ]
           "default":{
             "description":"(Unexpected Error)"
           },
-          "200":{
-            "description":"(Expected Result)"
+          "204":{
+            "description":"Set Value OK"
           }
         },
         "description":"changes the output log files folder location to a new value"
@@ -508,8 +464,8 @@ XData OpenAPI [ MimeType = application/json ]
           "default":{
             "description":"(Unexpected Error)"
           },
-          "200":{
-            "description":"(Expected Result)"
+          "204":{
+            "description":"Reset Value OK"
           }
         },
         "description":"resets the folder location to the default value"
@@ -518,6 +474,7 @@ XData OpenAPI [ MimeType = application/json ]
     "/generalMgmt/version":{
       "get":{
         "operationId":"GetVersion",
+        "description":"Return version of the Utility",
         "x-ISC_ServiceMethod":"GetVersion",
         "x-ISC_CORS":true,
         "responses":{
@@ -525,7 +482,7 @@ XData OpenAPI [ MimeType = application/json ]
             "description":"(Unexpected Error)"
           },
           "200":{
-            "description":"(Expected Result)"
+            "description":"Returned OK"
           }
         }
       }

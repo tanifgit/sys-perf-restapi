@@ -1,12 +1,13 @@
+/// An API for interacting with the SystemPerformance Utility<br/>
 /// Business logic class defined by OpenAPI in zpButtons.API.REST.spec<br/>
-/// Updated Apr 30, 2020 13:48:27
+/// Updated May 3, 2020 09:58:13
 Class zpButtons.API.REST.impl Extends %REST.Impl [ ProcedureBlock ]
 {
 
 /// If ExposeServerExceptions is true, then details of internal errors will be exposed.
 Parameter ExposeServerExceptions = 1;
 
-/// (provide functional description here)<br/>
+/// Create a profile giving an interval and count<br/>
 /// The method arguments hold values for:<br/>
 ///     name<br/>
 ///     description<br/>
@@ -36,7 +37,7 @@ ClassMethod CreateProfilePerCount(name As %String, description As %String, inter
 	Quit result
 }
 
-/// (provide functional description here)<br/>
+/// Edit a profile, providing new interval and count<br/>
 /// The method arguments hold values for:<br/>
 ///     name<br/>
 ///     description<br/>
@@ -65,7 +66,7 @@ ClassMethod EditProfile(name As %String, description As %String, interval As %St
 	Quit result
 }
 
-/// (provide functional description here)<br/>
+/// Create a profile giving a duration and interval<br/>
 /// The method arguments hold values for:<br/>
 ///     duration<br/>
 ///     interval<br/>
@@ -92,7 +93,7 @@ ClassMethod CreateProfilePerDuration(duration As %String, interval As %String, p
 	Quit result
 }
 
-/// (provide functional description here)<br/>
+/// Delete a profile per name<br/>
 /// The method arguments hold values for:<br/>
 ///     name<br/>
 ClassMethod DeleteProfile(name As %String) As %Stream.Object
@@ -139,7 +140,7 @@ ClassMethod GetProfiles() As %Stream.Object
 	Quit profiles
 }
 
-/// (provide functional description here)<br/>
+/// Copy a Profile giving a new name<br/>
 /// The method arguments hold values for:<br/>
 ///     name<br/>
 ///     newName<br/>
@@ -194,7 +195,7 @@ ClassMethod RunProfile(profile As %String, liteRun As %String, payloadBody As %S
 	Quit result
 }
 
-/// (provide functional description here)
+/// Return the time remaining to wait for current Runs
 ClassMethod GetWaitTimeForCurrentRuns() As %Stream.Object
 {
     #dim status As %Status = $$$OK
@@ -217,7 +218,7 @@ ClassMethod GetWaitTimeForCurrentRuns() As %Stream.Object
 	Quit result
 }
 
-/// (provide functional description here)<br/>
+/// Return the time remaining to wait for a given Run ID<br/>
 /// The method arguments hold values for:<br/>
 ///     runId<br/>
 ClassMethod GetWaitTimeForRunId(runId As %String) As %Stream.Object
@@ -242,7 +243,7 @@ ClassMethod GetWaitTimeForRunId(runId As %String) As %Stream.Object
 	Quit result
 }
 
-/// (provide functional description here)<br/>
+/// Creat a Preview Report for a Run<br/>
 /// The method arguments hold values for:<br/>
 ///     runId<br/>
 ///     payloadBody, Request body contents<br/>
@@ -272,7 +273,6 @@ ClassMethod CreatePreviewReport(runId As %String, payloadBody As %Stream.Object)
 /// The method arguments hold values for:<br/>
 ///     runId<br/>
 ///     delete<br/>
-/// WARNING: This method's signature has changed.
 ClassMethod StopRun(runId As %String, delete As %String) As %Stream.Object
 {
     #dim status As %Status = $$$OK
@@ -295,7 +295,7 @@ ClassMethod StopRun(runId As %String, delete As %String) As %Stream.Object
 	Quit result
 }
 
-/// (provide functional description here)
+/// Return a list of previous runs
 ClassMethod GetPreviousRuns() As %Stream.Object
 {
     #dim status As %Status = $$$OK
@@ -392,7 +392,7 @@ ClassMethod ResetLogFolder(payloadBody As %Stream.Object) As %Stream.Object
 	Quit ""
 }
 
-/// (provide functional description here)
+/// Return version of the Utility
 ClassMethod GetVersion() As %Stream.Object
 {
     #dim status As %Status = $$$OK

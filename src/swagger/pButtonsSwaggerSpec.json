@@ -346,6 +346,44 @@
                 }
             }
         },
+        "/runMgmt/{profile}/{liteRun}":{
+            "post":{
+              "parameters":[
+                {
+                  "name":"profile",
+                  "in":"path",
+                  "required":true,
+                  "type":"string"
+                },
+                {
+                  "name":"liteRun",
+                  "in":"path",
+                  "required":true,
+                  "type":"string"
+                },
+                {
+                  "name":"payloadBody",
+                  "in":"body",
+                  "description":"Request body contents",
+                  "required":false,
+                  "schema":{
+                    "type":"string"
+                  }
+                }
+              ],
+              "operationId":"RunProfile",
+              "x-ISC_ServiceMethod":"RunProfile",
+              "x-ISC_CORS":true,
+              "responses":{
+                "default":{
+                  "description":"(Unexpected Error)"
+                },
+                "202":{
+                  "description":"Run Profile Initiated"
+                }
+              }
+            }
+          },
         "/runMgmtPrevious": {
             "get": {
 
