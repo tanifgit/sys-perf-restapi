@@ -5,7 +5,7 @@
         "type": "objectscript",
         "request": "launch",
         "name": "ObjectScript Debug Class", 
-        "program": "##class(PackageSample.ObjectScript).Test()",
+        "program": "##class(zpButtons.Test.BasicAPI).RunBasicTests()",
       },
       {
         "type": "objectscript",
