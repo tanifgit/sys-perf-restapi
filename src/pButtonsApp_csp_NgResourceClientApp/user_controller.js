@@ -26,7 +26,7 @@ App.controller('ProfileController', ['$scope', '$rootScope','Profile', function(
           
           
          self.deleteProfile = function(name){
-        	 var profile = Profile.get({Name:name}, function() {
+        	 var profile = Profile.get({name:name}, function() {
         		  profile.$delete(function(){
         			  console.log('Deleting profile with name ', name);
         			  //self.fetchAllProfiles();
@@ -36,7 +36,7 @@ App.controller('ProfileController', ['$scope', '$rootScope','Profile', function(
           };
           
           self.runProfile = function(name){
-        	 var profile = Profile.get({Name:name}, function() {
+        	 var profile = Profile.get({name:name}, function() {
         		  profile.$run(function(){
         			  console.log('Running profile with name ', name);
         			  //self.fetchAllProfiles();
@@ -46,7 +46,7 @@ App.controller('ProfileController', ['$scope', '$rootScope','Profile', function(
           
           self.copyProfile = function(name){
 	          
-        	 var profile = Profile.get({Name:name}, function() {
+        	 var profile = Profile.get({name:name}, function() {
 	        	 profile.newName = "CopyOf"+name;
         		  profile.$copy(function(){
         			  console.log('copying profile with name ', name);

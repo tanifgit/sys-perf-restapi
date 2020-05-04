@@ -9,13 +9,13 @@ App.factory('Profile', ['$resource', function ($resource) {
     		'/pButtons/profileMgmt', 
 			{name:'@Name',description:'@Desc',interval:'@Interval',count:'@SamplesNum'},
 			{ 
-                'get':      {method:'GET',      url:'./:name'},
+                'get':      {method:'GET',     url:'/pButtons/profileMgmt/:name'},
                 'save':     {method:'POST',     url:'/pButtons/profileMgmt/:name/:description/:interval/:count'},
                 'update':   {method:'PUT',      url:'/pButtons/profileMgmt/:name/:description/:interval/:count'},
                 'query':    {method:'GET',  isArray:true},
                 'remove':   {method:'DELETE',   url:'/pButtons/profileMgmt/:name'},
                 'copy':     {method:'POST',     url:'/pButtons/profileMgmtCopy/:name/:newName',params:{name:'@Name',newName:'@newName'}},
-                'run':      {method:'POST',     url:'/pButtons/runMgmt/:name'},
+                'run':      {method:'POST',     url:'/pButtons/runMgmt/:name/1'},
 			    'delete':   {method:'DELETE',   url:'/pButtons/profileMgmt/:name'} }
     		
 			

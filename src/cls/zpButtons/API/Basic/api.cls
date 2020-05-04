@@ -146,6 +146,7 @@ ClassMethod DeleteProfile(profileName As %String, Output result As %DynamicObjec
 	Quit status
 }
 
+/// Method could take long time to return. Could consider Jobbing this call.
 ClassMethod RunProfile(profileName As %String, liteRun As %Boolean = 0, Output runInfo As %DynamicObject) As %Status
 {
 	#dim status As %Status = $$$OK
