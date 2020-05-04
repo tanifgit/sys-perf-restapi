@@ -1,0 +1,119 @@
+<html>
+  <head>  
+    <title>AngularJS $http Example</title>  
+    <style>
+      .username.ng-valid {
+          background-color: lightgreen;
+      }
+      .username.ng-dirty.ng-invalid-required {
+          background-color: red;
+      }
+      .username.ng-dirty.ng-invalid-minlength {
+          background-color: yellow;
+      }
+
+      .email.ng-valid {
+          background-color: lightgreen;
+      }
+      .email.ng-dirty.ng-invalid-required {
+          background-color: red;
+      }
+      .email.ng-dirty.ng-invalid-email {
+          background-color: yellow;
+      }
+
+    </style>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+     <link rel="stylesheet" href="app.css">
+  </head>
+  <body ng-app="myApp" class="ng-cloak">
+      <div class="generic-container" ng-controller="UserController as ctrl">
+          <div class="panel panel-default">
+              <div class="panel-heading"><span class="lead">User Registration Form </span></div>
+              <div class="formcontainer">
+                  <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+				  <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="Name">Name</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.user.Name" id="Name" class="form-control input-sm" placeholder="Name"/>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="Desc">Description</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.user.Desc" id="uname" class="form-control input-sm" placeholder="Description"/>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                        
+                      
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="Interval">Interval</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.user.Interval" id="Interval" class="form-control input-sm" placeholder="Interval"/>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="SamplesName">Samples Num</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.user.SamplesNum" id="SamplesNum" class="form-control input-sm" placeholder="Samples Num"/>
+                                  
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="form-actions floatRight">
+                              <input type="submit"  value="{{!ctrl.user.id ? 'Add' : 'Update'}}" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="panel panel-default">
+                <!-- Default panel contents -->
+              <div class="panel-heading"><span class="lead">List of Users </span></div>
+              <div class="tablecontainer">
+                  <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>Name</th>
+                              <th>Description</th>
+                              <th>Interval</th>
+                              <th>Samples Num</th>
+                              <th width="100"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="u in ctrl.users">
+                              <td><span ng-bind="u.Name"></span></td>
+                              <td><span ng-bind="u.Desc"></span></td>
+                              <td><span ng-bind="u.Interval"></span></td>
+                              <td><span ng-bind="u.SamplesNum"></span></td>
+                              <td>
+                              <button type="button" ng-click="ctrl.edit(u.Name)" class="btn btn-success custom-width">Edit</button>  <button type="button" ng-click="ctrl.remove(u.id)" class="btn btn-danger custom-width">Remove</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-resource.js"></script>
+      <script src="app.js"></script>
+      <script src="user_service.js"></script>  
+      <script src="user_controller.js"></script>
+  </body>
+</html>

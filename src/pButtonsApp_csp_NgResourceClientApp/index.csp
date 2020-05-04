@@ -1,0 +1,212 @@
+<html>
+  <head>  
+    <title>pButtons</title>  
+    <style>
+      .username.ng-valid {
+          background-color: lightgreen;
+      }
+      .username.ng-dirty.ng-invalid-required {
+          background-color: red;
+      }
+      .username.ng-dirty.ng-invalid-minlength {
+          background-color: yellow;
+      }
+
+      .email.ng-valid {
+          background-color: lightgreen;
+      }
+      .email.ng-dirty.ng-invalid-required {
+          background-color: red;
+      }
+      .email.ng-dirty.ng-invalid-email {
+          background-color: yellow;
+      }
+
+    </style>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+     <link rel="stylesheet" href="app.css">
+     <link href="style.css" rel="stylesheet" />
+  </head>
+  <body ng-app="myApp" class="ng-cloak">
+  <nav  ng-click="$event.preventDefault()">
+
+			<!-- When a link in the menu is clicked, we set the active variable -->
+
+			<a href="#" class="profiles" ng-click="profiles=true;runs=false;prevruns=false;general=false">Profiles Management</a>
+	
+			<a href="#" class="runs" ng-click="profiles=false;runs=true;prevruns=false;general=false">Current Runs</a>
+			<a href="#" class="prevruns" ng-click="profiles=false;runs=false;prevruns=true;general=false">Previous Runs</a>
+			<a href="#" class="general" ng-click="profiles=false;runs=false;prevruns=false;general=true">General</a>
+		</nav>
+		<div ng-controller="RefreshController as refctrl">
+		Last Updated:  {{date | date:'HH:mm:ss'}}
+		<button type="button" ng-click="refreshPage()" class="btn btn-info ">Refresh</button>
+		</div>
+
+		<!-- ng-show will show an element if the value in the quotes is truthful,
+			 while ng-hide does the opposite. Because the active variable is not set
+			 initially, this will cause the first paragraph to be visible. -->
+
+
+		
+      <div ng-show="profiles" class="generic-container" ng-controller="ProfileController as ctrl">
+          <div class="panel panel-default">
+              <div class="panel-heading"><span class="lead">pButtons Profile Edit Form </span></div>
+              <div class="formcontainer">
+                  <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
+				  <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="Name">Name</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.profile.Name" ng-readonly="existingProfile" id="Name" class="form-control input-sm" placeholder="Name" required/>
+                              </div>
+                          </div>
+                      </div>
+                      
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="Desc">Description</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.profile.Desc" id="uname" class="form-control input-sm" placeholder="Description"/>
+                                  
+                              </div>
+                          </div>
+                      </div>
+                        
+                      
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="Interval">Interval</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.profile.Interval" id="Interval" class="form-control input-sm" placeholder="Interval"/>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="form-group col-md-12">
+                              <label class="col-md-2 control-lable" for="SamplesName">Samples Num</label>
+                              <div class="col-md-7">
+                                  <input type="text" ng-model="ctrl.profile.SamplesNum" id="SamplesNum" class="form-control input-sm" placeholder="Samples Num"/>
+                                  
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="row">
+                          <div class="form-actions floatRight">
+                              <input type="submit"  value="Add" ng-hide="existingProfile" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <input type="submit"  value="Update" ng-hide="!existingProfile" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
+                              <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm" ng-disabled="myForm.$pristine">Reset Form</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+          <div class="panel panel-default">
+                <!-- Default panel contents -->
+              <div class="panel-heading"><span class="lead">List of pButtons Profiles </span></div>
+              <div class="tablecontainer">
+                  <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>Name</th>
+                              <th>Description</th>
+                              <th>Interval</th>
+                              <th>Samples Num</th>
+                              <th width="100"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="u in ctrl.profiles">
+                              <td><span ng-bind="u.Name"></span></td>
+                              <td><span ng-bind="u.Desc"></span></td>
+                              <td><span ng-bind="u.Interval"></span></td>
+                              <td><span ng-bind="u.SamplesNum"></span></td>
+                              <td>
+                              <button type="button" ng-click="ctrl.edit(u.Name)" class="btn btn-success custom-width">Edit</button>
+                              <button type="button" ng-click="ctrl.copy(u.Name)" class="btn btn-info custom-width">Copy</button>
+                              <button type="button" ng-click="ctrl.remove(u.Name)" class="btn btn-danger custom-width">Remove</button>
+                              <button type="button" ng-click="ctrl.run(u.Name)" class="btn btn-primary custom-width">Run</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      
+      
+      <div ng-show="runs" class="generic-container" ng-controller="CurrentRunController as runsctrl">
+         <div class="panel panel-default">
+                <!-- Default panel contents -->
+              <div class="panel-heading"><span class="lead">List of pButtons Current Runs</span></div>
+              <div class="tablecontainer">
+                  <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>Run ID</th>
+                              <th>Wait Time</th>
+                             
+                              <th width="100"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="u in runsctrl.currentRuns">
+                              <td><span ng-bind="u.RunId"></span></td>
+                              <td><span ng-bind="u.WaitTime"></span></td>
+                              
+                              <td>
+                              <button type="button" ng-click="runsctrl.preview(u.RunId)" class="btn btn-success ">Create Preview</button>
+                              <button type="button" ng-click="runsctrl.stop(u.RunId)" class="btn btn-danger custom-width">Stop</button>
+                              </td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      
+            
+      <div ng-show="prevruns" class="" ng-controller="PrevRunController as prevrunsctrl">
+         <div class="">
+                <!-- Default panel contents -->
+              <div class="panel panel-heading"><span class="lead">List of pButtons Previous Runs</span></div>
+              <div class="tablecontainer">
+                  <table class="table table-hover">
+                      <thead>
+                          <tr>
+                              <th>Run ID</th>
+                              <th>Report Time</th>
+                              <!--<th>Folder</th>-->
+                              <th>Report File Name</th>
+                              <th>Report File Exists</th>
+                              <th width="100"></th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr ng-repeat="u in prevrunsctrl.previousRuns">
+                              <td><span ng-bind="u.Id"></span></td>
+                              <td><span ng-bind="u.DateTime"></span></td>
+                              <!--<td><span ng-bind="u.Folder"></span></td>-->
+                              <td><a ng-href="{{u.ReportFilename}}" ng-bind="u.ReportFilename"></a></td>
+                              <td><span ng-bind="u.ReportFileExists"></span></td>
+                              
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+      
+      
+      
+      
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-resource.js"></script>
+      <script src="app.js"></script>
+      <script src="user_service.js"></script>  
+      <script src="user_controller.js"></script>
+  </body>
+</html>
