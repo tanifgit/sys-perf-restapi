@@ -8,14 +8,15 @@ App.factory('Profile', ['$resource', function ($resource) {
     return $resource(
     		'/pButtons/profileMgmt', 
 			{name:'@Name',description:'@Desc',interval:'@Interval',count:'@SamplesNum'},
-			{ 'get':  {method:'GET',url:'/pButtons/profileMgmt/:name',params:{name:'@Name'}},
-  'save':   {method:'POST', url:'/pButtons/profileMgmt/:name/:description/:interval/:count'},
-  'update':   {method:'PUT', url:'/pButtons/profileMgmt/:name/:description/:interval/:count'},
-  'query':  {method:'GET', isArray:true}, //, headers: { 'Authorization': 'Basic U3VwZXIgVXNlcjpzeXM=' }},
-  'remove': {method:'DELETE',url:'/pButtons/profileMgmt/:name'},
-  'copy': {method:'POST',url:'/pButtons/profileMgmtCopy/:name/:newName',params:{name:'@Name',newName:'@newName'}},
-  'run': {method:'POST',url:'/pButtons/runMgmt/:name'},
-			'delete': {method:'DELETE',url:'/pButtons/profileMgmt/:name'} }
+			{ 
+                'get':      {method:'GET',      url:'./:name'},
+                'save':     {method:'POST',     url:'/pButtons/profileMgmt/:name/:description/:interval/:count'},
+                'update':   {method:'PUT',      url:'/pButtons/profileMgmt/:name/:description/:interval/:count'},
+                'query':    {method:'GET',  isArray:true},
+                'remove':   {method:'DELETE',   url:'/pButtons/profileMgmt/:name'},
+                'copy':     {method:'POST',     url:'/pButtons/profileMgmtCopy/:name/:newName',params:{name:'@Name',newName:'@newName'}},
+                'run':      {method:'POST',     url:'/pButtons/runMgmt/:name'},
+			    'delete':   {method:'DELETE',   url:'/pButtons/profileMgmt/:name'} }
     		
 			
         
