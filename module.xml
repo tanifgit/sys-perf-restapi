@@ -18,6 +18,15 @@
         UseCookies="2"
         CookiePath="/pbuttons"
        />
+
+       <CSPApplication
+        Url="/pButtonsUI"
+        Path="/src/pButtonsAppCSP"
+        Directory="{$cspdir}/pButtonsUI"
+        ServeFiles="1"
+        Recurse="1"
+        CookiePath="/pButtonsUI"
+       />
     </Module>
     
   </Document>
