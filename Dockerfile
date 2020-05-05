@@ -32,7 +32,7 @@ RUN \
   set webProperties("DispatchClass") = "zpButtons.API.REST.disp" \
   set webProperties("NameSpace") = "%SYS" \
   set webProperties("Enabled") = 1 \
-  set webProperties("AutheEnabled") = 96 \
+  set webProperties("AutheEnabled") = 32 \
   set sc = ##class(Security.Applications).Create(webName, .webProperties) \
   write sc \
   write "Web application "_webName_" has been created!" \
@@ -41,7 +41,7 @@ RUN \
   set webName = "/pbuttonsUI" \
   set webProperties("NameSpace") = "%SYS" \
   set webProperties("Enabled") = 1 \
-  set webProperties("AutheEnabled") = 96 \
+  set webProperties("AutheEnabled") = 32 \
   set webProperties("AutoCompile")=1 \
   set webProperties("CSPZENEnabled")=1 \
   set webProperties("CookiePath")="/pButtonsUI/" \

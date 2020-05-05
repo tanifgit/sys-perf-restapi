@@ -23,6 +23,8 @@
         Url="/pButtonsUI"
         Path="/src/pButtonsAppCSP"
         Directory="{$cspdir}/pButtonsUI"
+        PasswordAuthEnabled="1"
+        UnauthenticatedEnabled="0"
         ServeFiles="1"
         Recurse="1"
         CookiePath="/pButtonsUI"
