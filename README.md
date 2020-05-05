@@ -19,6 +19,14 @@ Clone/git pull the repo into any local directory.
 
 This template creates /pbuttons REST web-application on IRIS which implements api calls to the SystemPerformance (pka pButtons) utility.
 
+A simple partial UI is also provided as a sample of what can be done using the REST API.
+
+You can browse to the UI with the following link:
+http://<host>:<port>/pButtonsUI/index.csp
+
+For example:
+http://localhost:52773/pButtonsUI/index.csp
+
 # Testing with UnitTest
 
 If using Dockerfile, the container will also be setup with the relevant UnitTest folder and global pointing to it.
@@ -31,6 +39,8 @@ do ##class(zpButtons.Test.BasicAPITest).RunBasicTests()
 ```
 do ##class(zpButtons.Test.BasicAPITest).RunRESTTests()
 ```
+
+[Note running the "Basic" Tests will require user intervention (approving changing a folder location)]
 
 ## How to start coding
 This repository is ready to code,  change and expand in VSCode with ObjectScript plugin.
@@ -69,3 +79,5 @@ Config file if you want to debug with VSCode ObjectScript
     An include macro definition to support differences between CACHE/Ensemble and InterSystems IRIS.
 ##### /swagger
     The swagger json file (for editing with relevant plug-in, found easier than the spec class directly)
+##### /pButtonsAppCSP
+    A folder with the web app related code.
