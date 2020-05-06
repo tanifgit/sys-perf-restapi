@@ -17,6 +17,7 @@ USER irisowner
 
 RUN mkdir unittests
 RUN mkdir unittests/tests
+RUN mkdir /usr/irissys/csp/pButtonsAppCSP
 COPY  Installer.cls .
 COPY  src src
 COPY irissession.sh /
