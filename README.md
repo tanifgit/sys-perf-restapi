@@ -48,6 +48,9 @@ Install [VSCode](https://code.visualstudio.com/) and [ObjectScript](https://mark
 
 The script in Installer.cls will import everything you place under /src/cls into IRIS.
 
+## A Post on the Developer Community
+See this [post](https://community.intersystems.com/post/systemperformance-utility-pka-pbuttons-api-and-rest-api-and-sample-ui) for more info (screenshots) and discussion.
+
 ## What's inside the repo
 
 # Dockerfile
