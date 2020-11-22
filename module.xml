@@ -3,7 +3,8 @@
   <Document name="sys-perf-restapi.ZPM">
     <Module>
       <Name>sys-perf-restapi</Name>
-      <Version>1.0.5</Version>
+      <Version>1.0.6</Version>
+      <Description>An API (basic and REST) for the SystemPerformance (pka pButtons) utility</Description>
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="zpButtons.PKG"/>
